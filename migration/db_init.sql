@@ -13,20 +13,20 @@ CREATE TABLE users (
 DROP TABLE IF EXISTS "articles";
 CREATE TABLE articles (
     "id" serial PRIMARY KEY,
-    "user_id" int UNIQUE NOT NULL,
-    "body" text,
+    "user_id" int NOT NULL,
+    "title" varchar(255) NOT NULL,
+    "slug" varchar(255) NOT NULL,
     "description" text,
-    "favorited"  boolean,
-    "favorites_count" int ,
-    "slug" varchar(255) UNIQUE NOT NULL,
-    "title" varchar(255),
+    "body" text,
     "tag_list" varchar(100)[],
     "created_at" timestamp, 
-    "updated_at" timestamp
+    "updated_at" timestamp,
+    FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
 );
 
 DROP TABLE IF EXISTS "sessions";
 CREATE TABLE sessions (
-    "session_key" varchar(255) UNIQUE,
-    "user_id" int  
+    "session_key" uuid NOT NULL,
+    "user_id" int,
+    FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE  
 );
