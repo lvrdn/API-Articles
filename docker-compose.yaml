@@ -1,0 +1,26 @@
+version: '3.1'
+services:
+  rwa:
+    build:
+      dockerfile: Dockerfile
+    image: rwa:latest
+    links:
+      - dbPostgresql:dbPostgresql
+    ports:
+      - 8080:8080
+    depends_on:
+      - "dbPostgresql"
+    command: ["/app/wait-for-it.sh","dbPostgresql:5432","--","/app/app"]
+
+  dbPostgresql:
+    container_name: mydb-postrgres
+    image: postgres
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: realworld
+    volumes:
+      - ./migration/:/docker-entrypoint-initdb.d/

@@ -104,7 +104,7 @@ func main() {
 	}
 
 	go func() {
-		log.Println("start server")
+		log.Println("start server on:", cfg.HTTPport)
 		server.ListenAndServe()
 	}()
 
