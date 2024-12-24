@@ -107,14 +107,48 @@
   ```
    {
     "article": {
-        "title": "t@test.ru",
-        "username": "test",
-        "password": "1234",
-        "bio": "some information about user",
-        "image": "some information about image"
+        "id": 1,
+        "title": "my title",
+        "description": "my description",
+        "body": "some text",
+        "tagList": ["t","test","some tag"]
     }
   }
   ```
+
+  Поле "id" является обязательным. Допускается любая комбинация указанных полей, для успешного выполнения необходимо отправить хотя бы одно поле помимо "id".
+  В овтет отправляется json с обновленными данными:
+  
+  ```
+  {
+    "article": {
+        "id": 1,
+        "author": {
+            "ID": 2,
+            "Username": "test",
+            "Image": "some information about image"
+        },
+        "title": "my title",
+        "slug": "my title",
+        "description": "my description",
+        "body": "some text",
+        "tagList": ["t","test","some tag"],
+        "createdAt": "2024-12-24T08:49:33.661818Z",
+        "updatedAt": "2024-12-24T08:50:08.111405Z"
+    }
+  }
+  ```
+
+  * "/api/article" метод DELETE - удаление статьи по id. на вход принимается json:
+ 
+  ```
+  {
+    "article": {
+        "id": 1
+    }
+  }
+  ```
+  
 
 
 
