@@ -81,7 +81,7 @@ func main() {
 	router.HandleFunc("/api/users", userManager.Register).Methods(http.MethodPost)
 	router.HandleFunc("/api/users/login", userManager.Login).Methods(http.MethodPost)
 	//other
-	router.HandleFunc("/api/user/logout", userManager.Logout)
+	router.HandleFunc("/api/user/logout", userManager.Logout).Methods(http.MethodGet)
 	router.HandleFunc("/api/user", userManager.GetUserInfo).Methods(http.MethodGet)
 	router.HandleFunc("/api/user", userManager.UpdateUserInfo).Methods(http.MethodPut)
 	router.HandleFunc("/api/user", userManager.DeleteUser).Methods(http.MethodDelete)
